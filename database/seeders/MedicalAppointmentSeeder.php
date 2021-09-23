@@ -15,7 +15,7 @@ class MedicalAppointmentSeeder extends Seeder
     public function run()
     {
         MedicalAppointment::factory()
-            ->count(5)
+            ->count(15)
             ->create();
     }
 }

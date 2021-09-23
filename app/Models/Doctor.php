@@ -11,6 +11,8 @@ class Doctor extends Model
     use HasFactory;
     use Searchable;
 
+    protected $appends = ['fullName'];
+
     protected $fillable = [
         'document_nro',
         'first_name',
@@ -30,5 +32,10 @@ class Doctor extends Model
     public function medicalAppointments()
     {
         return $this->hasMany(MedicalAppointment::class);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 }

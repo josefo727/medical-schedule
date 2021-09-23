@@ -23,7 +23,7 @@ class SpecialtyFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->word(),
         ];
     }
 }

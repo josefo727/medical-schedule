@@ -23,7 +23,7 @@ class DoctorFactory extends Factory
     public function definition()
     {
         return [
-            'document' => (string) rand(1000000000, 1500000000),
+            'document_nro' => (string) rand(1000000000, 1500000000),
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'email' => $this->faker->email,

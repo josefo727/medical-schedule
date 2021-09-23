@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\MedicalAppointment;
 use App\Http\Requests\MedicalAppointmentStoreRequest;
 use App\Http\Requests\MedicalAppointmentUpdateRequest;
+use Illuminate\Support\Facades\Mail;
 
 class MedicalAppointmentController extends Controller
 {
@@ -39,8 +40,8 @@ class MedicalAppointmentController extends Controller
     {
         $this->authorize('create', MedicalAppointment::class);
 
-        $patients = Patient::pluck('document_nro', 'id');
-        $doctors = Doctor::pluck('document_nro', 'id');
+        $patients = Patient::select('first_name', 'last_name', 'id')->get();
+        $doctors = Doctor::select('first_name', 'last_name', 'id')->get();
 
         return view(
             'app.medical_appointments.create',
@@ -93,8 +94,8 @@ class MedicalAppointmentController extends Controller
     ) {
         $this->authorize('update', $medicalAppointment);
 
-        $patients = Patient::pluck('document_nro', 'id');
-        $doctors = Doctor::pluck('document_nro', 'id');
+        $patients = Patient::select('first_name', 'last_name', 'id')->get();
+        $doctors = Doctor::select('first_name', 'last_name', 'id')->get();
 
         return view(
             'app.medical_appointments.edit',

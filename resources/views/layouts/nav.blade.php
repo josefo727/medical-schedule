@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-2">
     <div class="container">
-        
+
         <a class="navbar-brand text-primary font-weight-bold text-uppercase" href="{{ url('/') }}">
             Medical Schedule
         </a>
@@ -20,36 +20,36 @@
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             Apps <span class="caret"></span>
                         </a>
-                        
+
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @can('view-any', App\Models\User::class)
-                            <a class="dropdown-item" href="{{ route('users.index') }}">Users</a>
+                            <a class="dropdown-item" href="{{ route('users.index') }}">@lang('crud.users.index_title')</a>
                             @endcan
                             @can('view-any', App\Models\Specialty::class)
-                            <a class="dropdown-item" href="{{ route('specialties.index') }}">Specialties</a>
+                            <a class="dropdown-item" href="{{ route('specialties.index') }}">@lang('crud.specialties.index_title')</a>
                             @endcan
                             @can('view-any', App\Models\Patient::class)
-                            <a class="dropdown-item" href="{{ route('patients.index') }}">Patients</a>
+                            <a class="dropdown-item" href="{{ route('patients.index') }}">@lang('crud.patients.index_title')</a>
                             @endcan
                             @can('view-any', App\Models\MedicalAppointment::class)
-                            <a class="dropdown-item" href="{{ route('medical-appointments.index') }}">Medical Appointments</a>
+                            <a class="dropdown-item" href="{{ route('medical-appointments.index') }}">@lang('crud.medical_appointments.index_title')</a>
                             @endcan
                             @can('view-any', App\Models\Report::class)
-                            <a class="dropdown-item" href="{{ route('reports.index') }}">Reports</a>
+                            <a class="dropdown-item" href="{{ route('reports.index') }}">@lang('crud.reports.index_title')</a>
                             @endcan
                             @can('view-any', App\Models\Doctor::class)
-                            <a class="dropdown-item" href="{{ route('doctors.index') }}">Doctors</a>
+                            <a class="dropdown-item" href="{{ route('doctors.index') }}">@lang('crud.doctors.index_title')</a>
                             @endcan
                         </div>
 
                     </li>
-                    @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) || 
+                    @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) ||
                         Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             Access Management <span class="caret"></span>
                         </a>
-                        
+
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @can('view-any', Spatie\Permission\Models\Role::class)
                             <a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a>

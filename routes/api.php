@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Patient\LastAppointmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
@@ -95,4 +96,9 @@ Route::name('api.')
             DoctorMedicalAppointmentsController::class,
             'store',
         ])->name('doctors.medical-appointments.store');
+    });
+
+Route::name('api.patient.')
+    ->group(function (){
+        Route::get('/last-appointment/{documentNro}', [LastAppointmentController::class, 'show']);
     });

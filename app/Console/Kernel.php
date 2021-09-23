@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\CancelAppointments;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        CancelAppointments::class,
     ];
 
     /**
@@ -24,7 +25,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        // $schedule->command('cancel:appointments')->daily();
+        $schedule->command('cancel:appointments')
+            ->timezone('America/Bogota')
+            ->dailyAt('18:54');
+        // ->cron('0 */6 * * *') 00, 06, 12, 18
+        // ->everySixHours() 00, 06, 12, 18
+        // ->everyFifteenMinutes() 00, 15, 30, 45
     }
 
     /**

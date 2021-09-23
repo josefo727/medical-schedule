@@ -5,8 +5,8 @@
         <x-inputs.select name="patient_id" label="Paciente" required>
             @php $selected = old('patient_id', ($editing ? $medicalAppointment->patient_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Patient</option>
-            @foreach($patients as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+            @foreach($patients as $patient)
+            <option value="{{ $patient->id }}" {{ $selected == $patient->id ? 'selected' : '' }} >{{ $patient->fullName }}</option>
             @endforeach
         </x-inputs.select>
     </x-inputs.group>
@@ -15,8 +15,8 @@
         <x-inputs.select name="doctor_id" label="Doctor" required>
             @php $selected = old('doctor_id', ($editing ? $medicalAppointment->doctor_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Doctor</option>
-            @foreach($doctors as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+            @foreach($doctors as $doctor)
+            <option value="{{ $doctor->id }}" {{ $selected == $doctor->id ? 'selected' : '' }} >{{ $doctor->fullName }}</option>
             @endforeach
         </x-inputs.select>
     </x-inputs.group>

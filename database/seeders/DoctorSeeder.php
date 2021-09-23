@@ -15,7 +15,7 @@ class DoctorSeeder extends Seeder
     public function run()
     {
         Doctor::factory()
-            ->count(5)
+            ->count(50)
             ->create();
     }
 }

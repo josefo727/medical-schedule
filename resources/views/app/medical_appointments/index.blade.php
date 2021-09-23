@@ -75,15 +75,15 @@
                         <tr>
                             <td>
                                 {{
-                                optional($medicalAppointment->patient)->document_nro
+                                optional($medicalAppointment->patient)->fullName
                                 ?? '-' }}
                             </td>
                             <td>
                                 {{
-                                optional($medicalAppointment->doctor)->document_nro
+                                optional($medicalAppointment->doctor)->fullName
                                 ?? '-' }}
                             </td>
-                            <td>{{ $medicalAppointment->date ?? '-' }}</td>
+                            <td>{{ $medicalAppointment->date->format('d-m-Y h:i A') ?? '-' }}</td>
                             <td>{{ $medicalAppointment->status ?? '-' }}</td>
                             <td class="text-center" style="width: 134px;">
                                 <div
