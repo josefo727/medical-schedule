@@ -41,6 +41,7 @@ class SendMailMedicalAppointmentCreate implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->emails)->send(new NewRegisterMedicalAppointment($this->medicalAppointment));
+        Mail::to($this->emails)
+            ->send(new NewRegisterMedicalAppointment($this->medicalAppointment));
     }
 }

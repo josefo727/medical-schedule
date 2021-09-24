@@ -27,6 +27,7 @@ class MedicalAppointmentFactory extends Factory
             'status' => 'programado',
             'doctor_id' => \App\Models\Doctor::factory(),
             'patient_id' => \App\Models\Patient::factory(),
+            'user_id' => \App\Models\User::factory()
         ];
     }
 }

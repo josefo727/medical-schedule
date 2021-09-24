@@ -23,4 +23,9 @@ class MedicalAppointmentObserver
             ->onQueue('mails')
             ->delay(now()->addSecond());
     }
+
+    public function deleted(MedicalAppointment $medicalAppointment)
+    {
+        // TODO: A ejecutar tras eliminación
+    }
 }

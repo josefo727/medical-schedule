@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\MedicalAppointment;
 use App\Http\Requests\MedicalAppointmentStoreRequest;
 use App\Http\Requests\MedicalAppointmentUpdateRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class MedicalAppointmentController extends Controller
@@ -59,7 +60,13 @@ class MedicalAppointmentController extends Controller
 
         $validated = $request->validated();
 
-        $medicalAppointment = MedicalAppointment::create($validated);
+        try {
+            DB::beginTransaction();
+                $medicalAppointment = MedicalAppointment::create($validated);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+        }
 
         return redirect()
             ->route('medical-appointments.edit', $medicalAppointment)

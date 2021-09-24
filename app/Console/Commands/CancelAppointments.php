@@ -38,12 +38,7 @@ class CancelAppointments extends Command
      */
     public function handle()
     {
-        MedicalAppointment::query()
-            ->where('date', '<', now())
-            ->whereStatus('programado')
-            ->update([
-                'status' => 'cancelado'
-            ]);
+        (new MedicalAppointment)->cancelAppointments();
 
         return 0;
     }

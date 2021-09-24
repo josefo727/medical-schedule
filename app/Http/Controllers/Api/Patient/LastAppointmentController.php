@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\LastAppointmentResource;
 use App\Models\MedicalAppointment;
 use App\Models\Patient;
-use Illuminate\Http\Request;
+use App\Traits\ApiResponse;
 
 class LastAppointmentController extends Controller
 {
+    use ApiResponse;
     /**
      * Display the specified resource.
      *
@@ -18,17 +19,10 @@ class LastAppointmentController extends Controller
      */
     public function show(string $documentNro)
     {
-        // TODO: validar request ajax
-//        dd(request()->ajax());
-//        if (request()->ajax()) {
-//
-//        }
-         $patientId= optional(Patient::query()
-            ->where('document_nro', $documentNro)
-            ->first())->id;
+        $patientId= Patient::findIdPatientFromDocumentNumber($documentNro);
 
          if (is_null($patientId)) {
-             // TODO: exception
+             return $this->errorResponse('Paciente no encontrado.', 406);
          }
 
         $medicalAppointment = MedicalAppointment::query()
@@ -36,6 +30,12 @@ class LastAppointmentController extends Controller
             ->latest('date')
             ->first();
 
-        return new LastAppointmentResource($medicalAppointment);
+        if (is_null($medicalAppointment)) {
+            return $this->errorResponse('El paciente no tiene citas registradas.', 406);
+        }
+
+         $lastAppointment = new LastAppointmentResource($medicalAppointment);
+
+         return $this->successResponse($lastAppointment);
     }
 }

@@ -28,10 +28,16 @@ class Kernel extends ConsoleKernel
         // $schedule->command('cancel:appointments')->daily();
         $schedule->command('cancel:appointments')
             ->timezone('America/Bogota')
-            ->dailyAt('18:54');
-        // ->cron('0 */6 * * *') 00, 06, 12, 18
-        // ->everySixHours() 00, 06, 12, 18
-        // ->everyFifteenMinutes() 00, 15, 30, 45
+            ->dailyAt('17:57');
+        // ->cron('0 */6 * * *') 00, 06, 12, 18 Horas
+        // ->everySixHours() 00, 06, 12, 18 Horas
+        // ->everyFifteenMinutes() 00, 15, 30, 45 Minutos
+
+        // En consola para las tareas programadas
+        // php artisan schedule:work
+
+        // En consola para los trabajos encolados
+        // php artisan queue:work --queue=mails
     }
 
     /**

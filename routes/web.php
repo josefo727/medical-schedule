@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\MedicalAppointment;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -15,7 +18,7 @@ use App\Http\Controllers\MedicalAppointmentController;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
+s|
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
@@ -46,3 +49,22 @@ Route::prefix('/')
         Route::resource('reports', ReportController::class);
         Route::resource('doctors', DoctorController::class);
     });
+Route::get('/test-query', function (){
+//    $appointment = MedicalAppointment::query()->with(['patient', 'doctor'])->first();
+//    $patient = $appointment->first()->patient;
+//    $doctor = $appointment->first()->doctor;
+//    return  $patient->fullName . ' ' . $doctor->fullName;
+
+    $appointment = MedicalAppointment::find(1);
+    $appointment = DB::table('medical_appointments')
+        ->join('patients', 'medical_appointments.patient_id', 'patients.id')
+        ->where('medical_appointments.id', 1)
+        ->select('patients.first_name')
+        ->get();
+
+     return $appointment[0]->first_name;
+
+//    $appointment = MedicalAppointment::query()->first();
+//    $patient = $appointment->first()->patient;
+//    return  $patient->first_name;
+});

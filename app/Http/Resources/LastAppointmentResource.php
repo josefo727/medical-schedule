@@ -16,7 +16,7 @@ class LastAppointmentResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'data' => $this->date->format('d-M-Y'),
+            'date' => $this->date->format('d-M-Y'),
             'time' => $this->date->format('h:i A'),
             'doctor' => $this->doctor->fullName,
             'specialty' => $this->doctor->specialty->name,

@@ -39,4 +39,15 @@ class Patient extends Model
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+
+    /**
+     * @param $documentNro
+     * @return mixed|null
+     */
+    public static function findIdPatientFromDocumentNumber($documentNro)
+    {
+        return optional(self::query()
+            ->where('document_nro', $documentNro)
+            ->first())->id;
+    }
 }

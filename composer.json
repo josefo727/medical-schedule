@@ -13,10 +13,11 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.9",
+        "laravel/telescope": "^4.6",
         "laravel/tinker": "^2.5",
-        "spatie/laravel-permission": "^3.17",
+        "laravel/ui": "^3.0",
         "livewire/livewire": "^2.0",
-        "laravel/ui": "^3.0"
+        "spatie/laravel-permission": "^3.17"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -55,7 +56,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/telescope"
+            ]
         }
     },
     "config": {
